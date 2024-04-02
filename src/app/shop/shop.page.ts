@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Grocery, groceries } from './shop';
 import { CartService } from '../cart.service';
 import { IonicModule } from '@ionic/angular';
+import { Supabase } from 'database_client';
 
 interface GroceryItem {
   name: string;
@@ -10,6 +11,16 @@ interface GroceryItem {
   total: number;
   image: string;
 }
+
+// async function fetchData() {
+//   const supabaseInstance = new Supabase(); 
+//   try {
+//     const items = await supabaseInstance.getItems(); 
+//     console.log('Fetched items:', items);
+//   } catch (error) {
+//     console.error('Error fetching items:', error);
+//   }
+// }
 
 @Component({
   selector: 'app-groceries',
