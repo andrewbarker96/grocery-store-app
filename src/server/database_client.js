@@ -7,7 +7,7 @@ const SUPABASE_KEY = process.env.DB_KEY;
 
 const client = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-class Supabase {
+export class Supabase {
  
     async getItems() {
         try {

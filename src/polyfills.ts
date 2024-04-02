@@ -43,6 +43,8 @@
  */
  
 import './zone-flags';
+// import 'crypto-browserify';
+
 
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.

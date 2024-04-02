@@ -13,9 +13,9 @@ interface GroceryItem {
 }
 
 // async function fetchData() {
-//   const supabaseInstance = new Supabase(); 
+//   const supabaseInstance = new Supabase();
 //   try {
-//     const items = await supabaseInstance.getItems(); 
+//     const items = await supabaseInstance.getItems();
 //     console.log('Fetched items:', items);
 //   } catch (error) {
 //     console.error('Error fetching items:', error);
