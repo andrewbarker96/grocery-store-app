@@ -1,3 +1,5 @@
+import { Supabase } from 'database_client';
+
 // Define the Grocery class
 class Grocery {
   name: string;
@@ -10,6 +12,15 @@ class Grocery {
     this.total = price;
   }
 }
+// const fetchData: () => void = () => {
+//     const supabaseInstance = new Supabase();
+//     try {
+//       const items = supabaseInstance.getItems();
+//       console.log('Fetched items:', items);
+//     } catch (error) {
+//       console.error('Error fetching items:', error);
+//     }
+//   }
 
 class Total {
   total: number;

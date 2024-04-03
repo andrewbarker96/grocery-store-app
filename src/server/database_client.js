@@ -1,13 +1,9 @@
 const { createClient } = require('@supabase/supabase-js');
-const dotenv = require('dotenv');
-dotenv.config();
+const environment = require('../environments/environment');
 
-const SUPABASE_URL = process.env.DB_URL;
-const SUPABASE_KEY = process.env.DB_KEY;
+const client = createClient(environment.supabaseURL, environment.supabaseKey);
 
-const client = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-export class Supabase {
+class Supabase {
  
     async getItems() {
         try {

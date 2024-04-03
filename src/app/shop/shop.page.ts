@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Grocery, groceries } from './shop';
 import { CartService } from '../cart.service';
-import { IonicModule } from '@ionic/angular';
-import { Supabase } from 'database_client';
+import { environment } from 'src/environments/environment';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+const URL = environment.supabaseURL;
+const KEY = environment.supabaseKey;
+
+export const supabase: SupabaseClient = createClient(URL, KEY);
 
 interface GroceryItem {
   name: string;
@@ -12,35 +17,31 @@ interface GroceryItem {
   image: string;
 }
 
-// async function fetchData() {
-//   const supabaseInstance = new Supabase();
-//   try {
-//     const items = await supabaseInstance.getItems();
-//     console.log('Fetched items:', items);
-//   } catch (error) {
-//     console.error('Error fetching items:', error);
-//   }
-// }
-
 @Component({
-  selector: 'app-groceries',
+  selector: 'app-shop',
   templateUrl: './shop.page.html',
   styleUrls: ['./shop.page.scss'],
 })
 export class ShopPage implements OnInit {
-  groceriesList: Grocery[] = groceries;
   groceryItems: GroceryItem[] = []; // Initialize your groceryItems array
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit() {
-    this.groceryItems = this.groceriesList.map((grocery) => ({
-      name: grocery.name,
-      price: grocery.price,
-      quantity: 1, // Default quantity
-      total: grocery.price, // Default total
-      image: '',
-    }));
+  async ngOnInit() {
+    let { data: groceries, error } = await supabase
+      .from('groceries')
+      .select('*');
+
+    if (error) console.log('Error fetching groceries: ', error);
+    else if (groceries) {
+      this.groceryItems = groceries.map((grocery) => ({
+        name: grocery.name,
+        price: grocery.price,
+        quantity: 1, // Default quantity
+        total: grocery.price, // Default total
+        image: grocery.image,
+      }));
+    }
   }
 
   addToCart(groceryItem: GroceryItem) {
@@ -54,10 +55,4 @@ export class ShopPage implements OnInit {
   getCartTotal() {
     return this.cartService.getCartTotal();
   }
-
-  clearCart() {
-    this.cartService.clearCart();
-  }
-
-  checkout() {}
 }

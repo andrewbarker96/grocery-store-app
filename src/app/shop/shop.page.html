@@ -9,10 +9,10 @@
         <ion-list>
             <ion-item><h1>Shop</h1></ion-item>
             <ion-item *ngFor="let grocery of groceryItems">
-            <!-- <img [src]="grocery.image || 'https://via.placeholder.com/50'" style="margin: 2%;" /> -->
+            <img [src]="grocery.image" style="margin: 2%;" />
             <ion-label>
-                <!-- <h2>{{grocery.name}}</h2> -->
-                <!-- <p>$ {{grocery.price}}</p> -->
+                <h2>{{grocery.name}}</h2>
+                <p>$ {{grocery.price}}</p>
             </ion-label>
             <ion-button shape='rounded' (click)="addToCart(grocery)">Add to Cart</ion-button>
             </ion-item>
