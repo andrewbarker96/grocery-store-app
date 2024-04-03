@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 
-
 const URL = environment.supabaseURL;
 const KEY = environment.supabaseKey;
 
@@ -29,12 +28,9 @@ export class AdminPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.groceryForm = this.formBuilder.group({
-      id: [''],
       name: ['', Validators.required],
       price: ['', Validators.required],
-      quantity: ['', Validators.required],
-      total: ['', Validators.required],
-      image: ['']
+      image: [''],
     });
   }
 
@@ -47,17 +43,18 @@ export class AdminPage implements OnInit {
       .from('groceries')
       .select('*');
 
-    if (error) console.log("Error fetching groceries: ", error);
+    if (error) console.log('Error fetching groceries: ', error);
     else this.groceryItems = groceries as GroceryItem[];
   }
 
   async createGroceryItem(item: GroceryItem) {
-    const { data, error } = await supabase
-      .from('groceries')
-      .insert([item]);
+    const { data, error } = await supabase.from('groceries').insert([item]);
 
-    if (error) console.log("Error creating grocery item: ", error);
-    else await this.getGroceryItems();
+    if (error) console.log('Error creating grocery item: ', error);
+    else {
+      console.log(`${item.name} successully added`);
+      await this.getGroceryItems();
+    }
   }
 
   async updateGroceryItem(item: GroceryItem) {
@@ -66,7 +63,7 @@ export class AdminPage implements OnInit {
       .update(item)
       .match({ id: item.id });
 
-    if (error) console.log("Error updating grocery item: ", error);
+    if (error) console.log('Error updating grocery item: ', error);
     else await this.getGroceryItems();
   }
 
@@ -76,7 +73,7 @@ export class AdminPage implements OnInit {
       .delete()
       .match({ id });
 
-    if (error) console.log("Error deleting grocery item: ", error);
+    if (error) console.log('Error deleting grocery item: ', error);
     else await this.getGroceryItems();
   }
 

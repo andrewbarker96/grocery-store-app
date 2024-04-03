@@ -28,6 +28,11 @@ const routes: Routes = [
           import('../profile/profile.module').then((m) => m.ProfilePageModule),
       },
       {
+        path: 'admin',
+        loadChildren: () =>
+          import('../admin/admin.module').then((m) => m.AdminPageModule),
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',
