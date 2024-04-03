@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>admin</ion-title>
+    <ion-title>
+      Admin Page
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">admin</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- Grocery Form -->
+  <form [formGroup]="groceryForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Price</ion-label>
+      <ion-input formControlName="price" type="number"></ion-input>
+    </ion-item>
+    <!-- Add more fields for other properties if needed -->
+    <ion-button type="submit" expand="block" [disabled]="!groceryForm.valid">Submit</ion-button>
+  </form>
+
+  <!-- Grocery Items List -->
+  <ion-list>
+    <ion-item *ngFor="let item of groceryItems">
+      <ion-label>{{ item.name }}</ion-label>
+      <ion-button (click)="editGroceryItem(item)">Edit</ion-button>
+      <ion-button (click)="deleteGroceryItem(item.id)">Delete</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
