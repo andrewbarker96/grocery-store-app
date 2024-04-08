@@ -23,7 +23,10 @@ interface GroceryItem {
   styleUrls: ['./shop.page.scss'],
 })
 export class ShopPage implements OnInit {
-  groceryItems: GroceryItem[] = []; // Initialize your groceryItems array
+  groceryItems: GroceryItem[] = [];
+  filteredItems: GroceryItem[] = [];
+  searchTerm: string = '';
+  searchActive: boolean = false;
 
   constructor(private cartService: CartService) {}
 
@@ -54,5 +57,18 @@ export class ShopPage implements OnInit {
 
   getCartTotal() {
     return this.cartService.getCartTotal();
+  }
+  filterItems() {
+    this.searchActive = true;
+    if (this.searchTerm.trim() === '') {
+      this.filteredItems = this.groceryItems;
+    } else {
+      this.filteredItems = this.groceryItems.filter((item) => {
+        return item.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+    }
+  }
+  onSearchBlur() {
+    this.searchActive = false;
   }
 }

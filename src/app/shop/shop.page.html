@@ -8,7 +8,11 @@
     <ion-card style="padding:2%;">
         <ion-list>
             <ion-item><h1>Shop</h1></ion-item>
-            <ion-item *ngFor="let grocery of groceryItems">
+            <ion-item *ngFor="let item of filteredItems">
+              <!-- ... -->
+            </ion-item>
+            <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems()"></ion-searchbar>
+            <ion-item *ngFor="let grocery of (searchActive ? filteredItems : groceryItems)">
             <!-- <img [src]="grocery.image" style="margin: 2%;" /> -->
             <ion-label>
                 <h2>{{grocery.name}}</h2>
