@@ -70,3 +70,4 @@ Thumbs.db
 # Environment variables
 .env 
 src/environments
+.fake
