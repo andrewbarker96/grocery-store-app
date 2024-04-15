@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { GroceryItem } from "./shop/shop";
 import { IonicModule } from "@ionic/angular";
+import { Plugins } from '@capacitor/core';
+
+const { LocalNotifications } = Plugins;
 
 @Injectable({
   providedIn: "root",

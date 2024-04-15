@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Grocery, groceries } from './shop';
 import { CartService } from '../cart.service';
 import { environment } from 'src/environments/environment';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Keyboard } from '@capacitor/keyboard';
 
-const URL = environment.supabaseURL;
+const URL = environment.supabaseUrl;
 const KEY = environment.supabaseKey;
 
 export const supabase: SupabaseClient = createClient(URL, KEY);
@@ -45,10 +45,14 @@ export class ShopPage implements OnInit {
         image: grocery.image,
       }));
     }
+
+    Keyboard.show(); // show the keyboard
+    Keyboard.setAccessoryBarVisible({ isVisible: true }); // show the accessory bar
   }
 
   addToCart(groceryItem: GroceryItem) {
     this.cartService.addToCart(groceryItem);
+    Keyboard.hide(); // hide the keyboard
   }
 
   removeFromCart(groceryItem: GroceryItem) {

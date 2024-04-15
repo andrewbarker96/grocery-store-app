@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { Keyboard } from '@capacitor/keyboard';
 
-const URL = environment.supabaseURL;
+const URL = environment.supabaseUrl;
 const KEY = environment.supabaseKey;
 
 export const supabase: SupabaseClient = createClient(URL, KEY);
@@ -36,6 +37,8 @@ export class AdminPage implements OnInit {
 
   ngOnInit() {
     this.getGroceryItems();
+    Keyboard.show();
+    Keyboard.setAccessoryBarVisible({ isVisible: true });
   }
 
   async getGroceryItems() {
@@ -54,6 +57,7 @@ export class AdminPage implements OnInit {
     else {
       console.log(`${item.name} successully added`);
       await this.getGroceryItems();
+      Keyboard.hide();
     }
   }
 
