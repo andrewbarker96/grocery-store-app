@@ -1,4 +1,4 @@
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -63,21 +63,21 @@ export class LoginPage {
 
   async forgotPw() {
     const alert = await this.alertController.create({
-      header: "Receive a new password",
-      message: "Please insert your email",
+      header: 'Receive a new password',
+      message: 'Please insert your email',
       inputs: [
         {
-          type: "email",
-          name: "email",
+          type: 'email',
+          name: 'email',
         },
       ],
       buttons: [
         {
-          text: "Cancel",
-          role: "cancel",
+          text: 'Cancel',
+          role: 'cancel',
         },
         {
-          text: "Reset password",
+          text: 'Reset password',
           handler: async (result) => {
             const loading = await this.loadingController.create();
             await loading.present();
@@ -87,11 +87,11 @@ export class LoginPage {
             await loading.dismiss();
 
             if (error) {
-              this.showAlert("Failed", error.message);
+              this.showAlert('Failed', error.message);
             } else {
               this.showAlert(
-                "Success",
-                "Please check your emails for further instructions!"
+                'Success',
+                'Please check your emails for further instructions!'
               );
             }
           },
@@ -103,21 +103,21 @@ export class LoginPage {
 
   async getMagicLink() {
     const alert = await this.alertController.create({
-      header: "Get a Magic Link",
-      message: "We will send you a link to magically log in!",
+      header: 'Get a Magic Link',
+      message: 'We will send you a link to magically log in!',
       inputs: [
         {
-          type: "email",
-          name: "email",
+          type: 'email',
+          name: 'email',
         },
       ],
       buttons: [
         {
-          text: "Cancel",
-          role: "cancel",
+          text: 'Cancel',
+          role: 'cancel',
         },
         {
-          text: "Get Magic Link",
+          text: 'Get Magic Link',
           handler: async (result) => {
             const loading = await this.loadingController.create();
             await loading.present();
@@ -127,11 +127,11 @@ export class LoginPage {
             await loading.dismiss();
 
             if (error) {
-              this.showAlert("Failed", error.message);
+              this.showAlert('Failed', error.message);
             } else {
               this.showAlert(
-                "Success",
-                "Please check your emails for further instructions!"
+                'Success',
+                'Please check your emails for further instructions!'
               );
             }
           },
@@ -140,5 +140,4 @@ export class LoginPage {
     });
     await alert.present();
   }
-
 }

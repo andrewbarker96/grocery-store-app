@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
+import { CartService } from '../../services/cart.service';
 import { environment } from 'src/environments/environment';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Platform } from '@ionic/angular';
 import { Keyboard } from '@capacitor/keyboard';
 
 const URL = environment.supabaseUrl;
@@ -28,7 +29,7 @@ export class ShopPage implements OnInit {
   searchTerm: string = '';
   searchActive: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private platform: Platform) {}
 
   async ngOnInit() {
     let { data: groceries, error } = await supabase
@@ -46,8 +47,10 @@ export class ShopPage implements OnInit {
       }));
     }
 
-    Keyboard.show(); // show the keyboard
-    Keyboard.setAccessoryBarVisible({ isVisible: true }); // show the accessory bar
+    if (this.platform.is('capacitor')) {
+      Keyboard.show(); // show the keyboard
+      Keyboard.setAccessoryBarVisible({ isVisible: true }); // show the accessory bar
+    }
   }
 
   addToCart(groceryItem: GroceryItem) {

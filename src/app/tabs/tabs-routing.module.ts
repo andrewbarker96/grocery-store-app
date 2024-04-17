@@ -10,27 +10,29 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('../home/home.module').then((m) => m.HomePageModule),
+          import('../pages/home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'shop',
         loadChildren: () =>
-          import('../shop/shop.module').then((m) => m.ShopPageModule),
+          import('../pages/shop/shop.module').then((m) => m.ShopPageModule),
       },
       {
         path: 'cart',
         loadChildren: () =>
-          import('../cart/cart.module').then((m) => m.CartPageModule),
+          import('../pages/cart/cart.module').then((m) => m.CartPageModule),
       },
       {
         path: 'profile',
         loadChildren: () =>
-          import('../profile/profile.module').then((m) => m.ProfilePageModule),
+          import('../pages/profile/profile.module').then(
+            (m) => m.ProfilePageModule
+          ),
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('../admin/admin.module').then((m) => m.AdminPageModule),
+          import('../pages/admin/admin.module').then((m) => m.AdminPageModule),
       },
       {
         path: '',

@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { CartService } from "../cart.service";
-import { IonicModule } from "@ionic/angular";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CartService } from '../../services/cart.service';
+import { IonicModule } from '@ionic/angular';
 
 interface GroceryItem {
   name: string;
@@ -12,9 +12,9 @@ interface GroceryItem {
 }
 
 @Component({
-  selector: "app-cart",
-  templateUrl: "./cart.page.html",
-  styleUrls: ["./cart.page.scss"],
+  selector: 'app-cart',
+  templateUrl: './cart.page.html',
+  styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
   cartItems$: Observable<GroceryItem[]> = new Observable<GroceryItem[]>();

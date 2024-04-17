@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { GroceryItem } from "./shop/shop";
-import { IonicModule } from "@ionic/angular";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { GroceryItem } from '../pages/shop/shop';
+import { IonicModule } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 
 const { LocalNotifications } = Plugins;
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CartService {
   private cartItems = new BehaviorSubject<GroceryItem[]>([]);

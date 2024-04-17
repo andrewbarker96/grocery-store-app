@@ -10,7 +10,7 @@
             <ion-item *ngFor="let item of filteredItems">
               <!-- ... -->
             </ion-item>
-            <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems()"></ion-searchbar>
+            <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems()" ></ion-searchbar>
             <ion-item *ngFor="let grocery of (searchActive ? filteredItems : groceryItems)">
             <!-- <img [src]="grocery.image" style="margin: 2%;" /> -->
             <ion-label>
