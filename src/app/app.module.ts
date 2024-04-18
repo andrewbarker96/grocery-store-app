@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PopoverComponent } from './components/popover/popover.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopoverComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -19,7 +20,7 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

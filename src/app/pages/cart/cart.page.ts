@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { IonicModule } from '@ionic/angular';
 
 interface GroceryItem {

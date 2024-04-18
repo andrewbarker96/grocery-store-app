@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 import {
   ActionPerformed,
@@ -13,41 +14,37 @@ import {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  ngOnInit() {
+  constructor(private platform: Platform) {}
+
+  async ngOnInit() {
     console.log('Initializing HomePage');
 
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
+    if (this.platform.is('capacitor')) {
+      PushNotifications.addListener('registration', (token: Token) => {
+        alert('Push registration success, token: ' + token.value);
+      });
 
-    PushNotifications.addListener('registration', (token: Token) => {
-      alert('Push registration success, token: ' + token.value);
-    });
+      PushNotifications.addListener('registrationError', (error: any) => {
+        alert('Error on registration: ' + JSON.stringify(error));
+      });
 
-    PushNotifications.addListener('registrationError', (error: any) => {
-      alert('Error on registration: ' + JSON.stringify(error));
-    });
+      PushNotifications.addListener(
+        'pushNotificationReceived',
+        (notification: PushNotificationSchema) => {
+          alert('Push received: ' + JSON.stringify(notification));
+        }
+      );
 
-    PushNotifications.addListener(
-      'pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
-      },
-    );
-
-    PushNotifications.addListener(
-      'pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-      },
-    );
+      PushNotifications.addListener(
+        'pushNotificationActionPerformed',
+        (notification: ActionPerformed) => {
+          alert('Push action performed: ' + JSON.stringify(notification));
+        }
+      );
+    } else {
+      console.log(
+        'Push notificaitons is not supported on the web.'
+      );
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { environment } from 'src/environments/environment';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Platform } from '@ionic/angular';

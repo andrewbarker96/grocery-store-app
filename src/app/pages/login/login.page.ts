@@ -102,13 +102,15 @@ export class LoginPage {
   }
 
   async getMagicLink() {
+    const email = this.credentials.get('email')?.value; // Grab the email from the form entry
     const alert = await this.alertController.create({
-      header: 'Get a Magic Link',
-      message: 'We will send you a link to magically log in!',
+      header: 'Get a OOTP to your email.',
+      message: 'Verify the email below. A link will be sent to sign in.',
       inputs: [
         {
           type: 'email',
           name: 'email',
+          value: email, // Set the value of the email input field to the grabbed email
         },
       ],
       buttons: [

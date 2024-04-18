@@ -9,27 +9,59 @@
     <ion-card-content>
       <form (ngSubmit)="login()" [formGroup]="credentials">
         <ion-item>
-          <ion-label position="stacked">Your Email</ion-label>
           <ion-input
             type="email"
+            label="Email"
+            labelPlacement="floating"
             inputmode="email"
-            placeholder="Email"
+            placeholder="johndoe@gmail.com"
             formControlName="email"
           ></ion-input>
-          <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors"
+          <ion-note
+            slot="error"
+            *ngIf="(email.dirty || email.touched) && email.errors"
             >Please insert your email</ion-note
           >
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label position="stacked">Password</ion-label>
-          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors"
+          <ion-input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          ></ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(password.dirty || password.touched) && password.errors"
             >Please insert your password</ion-note
           >
-        </ion-item>
-        <ion-button type="submit" expand="block" strong="true" [disabled]="!credentials.valid"
+        </ion-item> -->
+        <ion-button
+          type="button"
+          expand="block"
+          color=""
+          [disabled]="!email.valid"
+          (click)="getMagicLink()"
+        >
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          Sign in with Email
+        </ion-button>
+        <!-- <ion-button
+          type="submit"
+          expand="block"
+          strong="true"
+          [disabled]="!credentials.valid"
           >Sign in</ion-button
         >
+        <ion-button
+          type="button"
+          expand="block"
+          color="warning"
+          (click)="forgotPw()"
+        >
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          Forgot password?
+        </ion-button>
 
         <div class="ion-margin-top">
           <ion-button
@@ -43,20 +75,17 @@
             Create Account
           </ion-button>
 
-          <ion-button type="button" expand="block" color="secondary" (click)="forgotPw()">
-            <ion-icon name="key-outline" slot="start"></ion-icon>
-            Forgot password?
-          </ion-button>
-
-          <ion-button type="button" expand="block" color="tertiary" (click)="getMagicLink()">
-            <ion-icon name="mail-outline" slot="start"></ion-icon>
-            Get a Magic Link
-          </ion-button>
-          <ion-button type="button" expand="block" color="warning" routerLink="groups">
+          <ion-button
+            type="button"
+            expand="block"
+            color="tertiary"
+            routerLink="/tabs/home"
+            
+          >
             <ion-icon name="arrow-forward" slot="start"></ion-icon>
-            Start without account
+            Continue without account
           </ion-button>
-        </div>
+        </div> -->
       </form>
     </ion-card-content>
   </ion-card>

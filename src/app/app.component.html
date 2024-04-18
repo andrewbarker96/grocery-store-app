@@ -1,3 +1,18 @@
 <ion-app>
+  <ion-toolbar>
+    <ion-title>Meat Mann Market</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon
+        *ngIf="authService.isLoggedIn()"
+        name="menu-outline"
+        (click)="presentPopover($event)"
+      ></ion-icon>
+      <ion-icon
+        *ngIf="!authService.isLoggedIn()"
+        name="log-in-outline"
+        (click)="login()"
+      ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

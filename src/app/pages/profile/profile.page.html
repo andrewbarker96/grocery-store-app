@@ -3,67 +3,25 @@
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-list [inset]="true">
-      <ion-item>
-        <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar" style="border-radius: 50%;">
-      </ion-item>
-      <ion-list>
-        <ion-item button detail="false">
-          <ion-label>
-            <h3>Name:</h3>
-            <p>Andrew Barker</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button detail="false">
-          <ion-label>
-            <h3>Email:</h3>
-            <p>abarker6&#64;live.maryville.edu</p>
-          </ion-label>
-        </ion-item>
-        <ion-item button detail="false">
-          <ion-label>
-            <h3>Maryville ID:</h3>
-            <p>0936806</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-list>
-  </ion-card>
 
-  <ion-card>
-    <ion-list [inset]="true">
-      <h2>Shopping List</h2>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Eggs"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Milk"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Bread"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Jelly"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Zucchini"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Dog Food"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox slot="start" aria-label="Toggle task completion"></ion-checkbox>
-        <ion-input aria-label="Task name" value="Windex"></ion-input>
-      </ion-item>
-      <ion-button expand="block" shape='round'>Add Item</ion-button>
-    </ion-list>
-  </ion-card>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Phone Number</ion-label>
+      <ion-input [(ngModel)]="user.phoneNumber"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="saveUserData()">Save</ion-button>
 </ion-content>

@@ -1,6 +1,7 @@
 import { authGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginPage } from './pages/login/login.page';
 import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
     redirectTo: './tabs/tabs.',
     pathMatch: 'full',
   },
+  {
+    path: 'login',
+    component:LoginPage
+  }
 ];
 @NgModule({
   imports: [
