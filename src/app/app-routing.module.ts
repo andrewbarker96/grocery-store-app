@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginPage } from './pages/login/login.page';
 import { AuthService } from './services/auth.service';
+import { RegisterPage } from './pages/register/register.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
+  
   {
     path: 'shop',
     loadChildren: () =>
@@ -61,6 +63,9 @@ const routes: Routes = [
   {
     path: 'login',
     component:LoginPage
+  },
+  {
+    path: 'login/register', component:RegisterPage
   }
 ];
 @NgModule({

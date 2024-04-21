@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { GroceryItem } from '../pages/shop/shop';
 import { IonicModule } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
+import { environment } from 'src/environments/environment';
 
 const { LocalNotifications } = Plugins;
 

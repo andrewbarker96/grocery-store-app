@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { Keyboard } from '@capacitor/keyboard';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +22,11 @@ export class LoginPage {
     private authService: AuthService,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private router: Router
-  ) {
+    private router: Router, 
+    private platform: Platform
+  )
+  
+  {
     this.authService.getCurrentUser().subscribe((user) => {
       if (user) {
         this.router.navigateByUrl('/groups', { replaceUrl: true });
@@ -103,9 +108,15 @@ export class LoginPage {
 
   async getMagicLink() {
     const email = this.credentials.get('email')?.value; // Grab the email from the form entry
+
+    if (this.platform.is('capacitor')) {
+      Keyboard.show(); // show the keyboard
+      Keyboard.setAccessoryBarVisible({ isVisible: true }); // show the accessory bar
+    }
+  
     const alert = await this.alertController.create({
-      header: 'Get a OOTP to your email.',
-      message: 'Verify the email below. A link will be sent to sign in.',
+      header: 'Sign in with email',
+      message: 'Enter your email below. A link will be sent to sign in.',
       inputs: [
         {
           type: 'email',

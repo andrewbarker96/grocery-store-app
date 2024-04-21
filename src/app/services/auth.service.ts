@@ -34,7 +34,6 @@ export class AuthService {
 
   async loadUser() {
     if (this.currentUser.value) {
-      // User is already set, no need to do anything else
       return;
     }
     const user = await this.supabase.auth.getUser();
@@ -83,17 +82,13 @@ export class AuthService {
     return this.supabase.auth.signInWithOtp({ email });
   }
 
-  signInWithPw(email: string, password: string) {
-    return this.supabase.auth.signInWithPassword({ email, password });
-  }
-
   logout() {
     if (confirm('Are you sure you want to log out?')) {
       this.supabase.auth.signOut();
       this.router.navigateByUrl('/', { replaceUrl: true });
     }
   }
-
+  
   isLoggedIn(): boolean {
     if (this.currentUser.value) {
       return true;
@@ -102,17 +97,16 @@ export class AuthService {
     }
   }
 
-  getCart() {
-    return this.supabase
-      .from('cart')
-      .select()
-      .eq('user_id', this.getCurrentUserId());
+  checkIfUserExists(email: string) {
+    return this.supabase.from('users').select('email').eq('email', email);
+  }
+
+  userCart() {
+    return this.supabase.from('cart').select().eq('user_id', this.getCurrentUserId());
   }
 
   addToCart(item: any) {
-    return this.supabase
-      .from('cart')
-      .insert([{ ...item, user_id: this.getCurrentUserId() }]);
+    return this.supabase.from('cart').insert([{ ...item, user_id: this.getCurrentUserId() }]);
   }
 
   removeFromCart(id: string) {

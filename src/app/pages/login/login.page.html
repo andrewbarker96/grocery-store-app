@@ -23,7 +23,7 @@
             >Please insert your email</ion-note
           >
         </ion-item>
-        <!-- <ion-item>
+        <ion-item>
           <ion-label position="stacked">Password</ion-label>
           <ion-input
             type="password"
@@ -35,18 +35,9 @@
             *ngIf="(password.dirty || password.touched) && password.errors"
             >Please insert your password</ion-note
           >
-        </ion-item> -->
+        </ion-item>
+
         <ion-button
-          type="button"
-          expand="block"
-          color=""
-          [disabled]="!email.valid"
-          (click)="getMagicLink()"
-        >
-          <ion-icon name="mail-outline" slot="start"></ion-icon>
-          Sign in with Email
-        </ion-button>
-        <!-- <ion-button
           type="submit"
           expand="block"
           strong="true"
@@ -78,14 +69,22 @@
           <ion-button
             type="button"
             expand="block"
+            color=""
+            (click)="getMagicLink()"
+          >
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            Sign in with Email
+          </ion-button>
+          <!-- <ion-button
+            type="button"
+            expand="block"
             color="tertiary"
             routerLink="/tabs/home"
-            
           >
             <ion-icon name="arrow-forward" slot="start"></ion-icon>
             Continue without account
-          </ion-button>
-        </div> -->
+          </ion-button> -->
+        </div>
       </form>
     </ion-card-content>
   </ion-card>

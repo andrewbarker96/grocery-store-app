@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Supa Chat</ion-title>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,12 +12,13 @@
     <ion-card-content>
       <form (ngSubmit)="createAccount()" [formGroup]="credentials">
         <ion-item>
-          <ion-label position="stacked">Your Email</ion-label>
           <ion-input
             type="email"
             inputmode="email"
-            placeholder="Email"
+            placeholder="johndoe@gmail.com"
             formControlName="email"
+            label="Email"
+            labelPlacement="floating"
           ></ion-input>
           <ion-note
             slot="error"
@@ -26,17 +27,31 @@
           >
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Password</ion-label>
           <ion-input
             type="password"
-            placeholder="Password"
             formControlName="password"
+            label="Password"
+            labelPlacement="floating"
           ></ion-input>
           <ion-note slot="error" *ngIf="checkErrors('password', 'required')"
             >Please insert a password</ion-note
           >
           <ion-note slot="error" *ngIf="checkErrors('password', 'minlength')"
             >Minlength 6 characters</ion-note
+          >
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="password"
+            formControlName="confirmPassword"
+            label="Confirm Password"
+            labelPlacement="floating"
+          ></ion-input>
+          <ion-note slot="error" *ngIf="checkErrors('confirmPassword', 'required')"
+            >Please confirm your password</ion-note
+          >
+          <ion-note slot="error" *ngIf="checkErrors('confirmPassword', 'mustMatch')"
+            >Passwords do not match</ion-note
           >
         </ion-item>
         <ion-button
