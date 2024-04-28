@@ -69,7 +69,7 @@ Thumbs.db
 
 # Environment variables
 .env 
-src/environments
+src/environments/environment.ts
 .fake
 
 www/
