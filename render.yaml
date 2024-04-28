@@ -1,0 +1,19 @@
+# Exported from Render on 2024-04-28T16:01:03Z
+services:
+- type: web
+  name: grocery-store-app
+  runtime: static
+  repo: https://github.com/andrewbarker96/grocery-store-app
+  branch: dev
+  envVars:
+  - key: supabaseURI
+    sync: false
+  - key: supabaseSecretKet
+    sync: false
+  - key: supabaseKey
+    sync: false
+  - key: supabaseUrl
+    sync: false
+  buildCommand: npm install; npm run build
+  staticPublishPath: ./
+version: "1"
